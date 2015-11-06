@@ -13,21 +13,7 @@ import android.view.View;
 public class MainActivity extends AppCompatActivity {
     private android.support.v4.widget.DrawerLayout mDrawerLayout;
 
-    private ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
-            R.string.drawer_opened, R.string.drawer_closed) {
-
-        /** Called when a drawer has settled in a completely closed state. */
-        public void onDrawerClosed(View view) {
-            super.onDrawerClosed(view);
-            invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-        }
-
-        /** Called when a drawer has settled in a completely open state. */
-        public void onDrawerOpened(View drawerView) {
-            super.onDrawerOpened(drawerView);
-            invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-        }
-    };
+    private ActionBarDrawerToggle mDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +21,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
+                R.string.drawer_opened, R.string.drawer_closed) {
+
+            /** Called when a drawer has settled in a completely closed state. */
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+
+            /** Called when a drawer has settled in a completely open state. */
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+            }
+        };
         // Set the drawer toggle as the DrawerListener
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerLayout.openDrawer(GravityCompat.START);
